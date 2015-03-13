@@ -1,0 +1,15 @@
+https://github.com/machinezone/tcpkali
+
+
+sysctl -w kern.maxfiles=110000
+sysctl -w kern.maxfilesperproc=50100
+sysctl -w kern.maxfilesperproc=50100
+sysctl -w net.inet.ip.portrange.hifirst=10000
+sysctl -w net.inet.ip.portrange.hilast=65535
+sysctl -w net.inet.ip.portrange.hifirst=10000
+sysctl -w net.inet.ip.portrange.hilast=65535
+
+
+tcpkali -c 1000 -w4 --connect-rate 170 --duration 10000  host:80/check_server_availability
+tcpkali -c 10000 -w4 --connect-rate 170 --duration 10000  host:8080/check_server_availability
+tcpkali -em "GET /check_server_availability HTTP/1.1\r\nHost: yandex.com\r\n\r\n" --latency-marker "HTTP/1.1"  -c 50000 -w4 --connect-rate 500 --duration 10000 host:80/check_server_availability
